@@ -1,4 +1,4 @@
-forgery-site
-============
+## Run locally
 
-Website for Forgery the minimal and flexible web application framework for Go
+    cd ~/Go/apps/forgery-site/
+    ~/Go/appengine/dev_appserver.py .
