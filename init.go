@@ -8,7 +8,7 @@ import(
 func init() {
     app := f.CreateServer()
     app.Get("/", func(req *f.Request, res *f.Response, next func()) {
-        res.End("Forgery")
+        res.Send("Forgery")
     })
     http.Handle("/", app)
 }
