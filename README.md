@@ -1,3 +1,7 @@
+## Install
+
+	go get github.com/hoisie/mustache
+
 ## Run locally
 
     cd ~/Go/apps/forgery-site/
