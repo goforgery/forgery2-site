@@ -1,6 +1,7 @@
 ## Install
 
 	go get github.com/hoisie/mustache
+	go get github.com/russross/blackfriday
 
 ## Run locally
 
