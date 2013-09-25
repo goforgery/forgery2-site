@@ -15,9 +15,12 @@ func init() {
 
     app.Engine(".html", fmustache.Make())
 
+    /*
+        API Reference Page.
+    */
     app.Get("/api.html", func(req *f.Request, res *f.Response, next func()) {
+        res.Locals["title"] = "API Reference - Forgery"
         res.Render("index.html", map[string]string{
-            "title": "API Reference - Forgery",
             "body": fmarkdown.Render("./en/api.md"),
         })
     })

@@ -1,7 +1,7 @@
 ## Install
 
-	go get github.com/hoisie/mustache
-	go get github.com/russross/blackfriday
+    go get github.com/ricallinson/fmarkdown
+    go get github.com/ricallinson/fmustache
 
 ## Run locally
 
