@@ -33,7 +33,7 @@
 * __TBD__ req.Route
 * req.Get()
 * req.Param()
-* __TBD__ req.Cookie()
+* req.Cookie()
 * __TBD__ req.SignedCookie()
 * req.Fresh()
 * req.Stale()
@@ -55,7 +55,7 @@
 * res.Jsonp()
 * res.Render()
 * res.Redirect()
-* __TBD__ res.Cookie()
+* res.Cookie()
 * __TBD__ res.ClearCookie()
 * __TBD__ res.Sendfile()
 * __TBD__ res.Download()
