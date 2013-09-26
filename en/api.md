@@ -57,7 +57,7 @@
 * res.Redirect()
 * res.Cookie()
 * __TBD__ req.SignedCookie()
-* __TBD__ res.ClearCookie()
+* res.ClearCookie()
 * __TBD__ res.Sendfile()
 * __TBD__ res.Download()
 * __TBD__ res.Format()
