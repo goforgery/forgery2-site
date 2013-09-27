@@ -62,6 +62,6 @@
 * __TBD__ res.Download()
 * __TBD__ res.Format()
 * res.Links()
-* __TBD__ res.Vary()
+* res.Vary()
 * res.Attachment()
 * res.Location()
