@@ -41,6 +41,9 @@
 * req.Accepts()
 * req.AcceptsCharset()
 * req.AcceptsLanguage()
+* req.Accepted()
+* req.AcceptedLanguages()
+* req.AcceptedCharsets()
 
 ## Response
 
