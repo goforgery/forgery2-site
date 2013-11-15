@@ -29,7 +29,7 @@
 * req.Xhr
 * req.Protocol
 * req.Secure
-* __TBD__ req.Params
+* req.Params
 * __TBD__ req.Route
 * req.Get()
 * req.Param()
