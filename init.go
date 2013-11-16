@@ -2,6 +2,7 @@ package main
 
 import(
     "net/http"
+    "github.com/ricallinson/stackr"
     "github.com/ricallinson/forgery"
     "github.com/ricallinson/fmustache"
     "github.com/ricallinson/fmarkdown"
@@ -11,9 +12,11 @@ func init() {
 
     app := f.CreateServer()
 
-    app.Locals["title"] = "Forgery"
+    app.Use("/", stackr.Static())
 
     app.Engine(".html", fmustache.Make())
+
+    app.Locals["title"] = "Forgery"
 
     /*
         API Reference Page.
