@@ -205,7 +205,7 @@ This feature is not supported yet.
 
 ### req.Query
 
-This property is an object containing the first item of parsed query-string parameters.
+This property is a map containing the first item of parsed query-string parameters.
 
     // GET /search?q=ric+allinson
     req.Query["q"]
@@ -213,7 +213,7 @@ This property is an object containing the first item of parsed query-string para
 
 ### req.Body
 
-This property is an object containing the first item of the parsed request body. This feature is provided by the `http.PostForm` property, though other body parsing middleware may populate this property instead.
+This property is a map containing the first item of the parsed request body. This feature is provided by the `http.PostForm` property, though other body parsing middleware may populate this property instead.
 
     // POST user=ric&email=ric@randomism.org
     req.Body["user"]
@@ -273,12 +273,12 @@ Contains the signed cookies sent by the user-agent, unsigned and ready for use. 
 
     // Cookie: foo=eyJmb28iOiJiYXIifS5QU1hjUGdOS3NwZFR6Q3BmOW1qN2JFR2RTUUx3MU5nWTRkMkE2QXpFTktjPQ%3D%3D
     var f map[string]interface{}
-    t := req.Cookie("foo", &f)
+    t := req.SignedCookie("foo", &f)
     // f["foo"] == "bar"
 
 ### req.Get(field)
 
-Get the case-insensitive request header `field`. The __Referrer__ and __Referer__ fields are interchangeable.
+Get the case-insensitive request header `field`.
 
     req.Get("Content-Type")
     // => "text/plain"
@@ -295,7 +295,7 @@ Alias for `req.Header.Get(field)`.
 
 Check if the given type is acceptable, returning true or false - in which case you should respond with 406 "Not Acceptable".
 
-The type value must be a single mime type string such as "application/json" or the extension name such as "json".
+The type value must be a single mime type string such as "application/json".
 
     // Accept: text/html, application/json
     req.accepts("application/json")
@@ -401,14 +401,14 @@ This property is much like `req.Url`, however it retains the original request ur
 
 ### req.AcceptedLanguages()
 
-Return an array of Accepted languages ordered from highest quality to lowest.
+Return a slice of Accepted languages ordered from highest quality to lowest.
 
     Accept-Language: en;q=.5, en-us
     // => ["en-us", "en"]
 
 ### req.AcceptedCharsets()
 
-Return an array of Accepted charsets ordered from highest quality to lowest.
+Return a slice of Accepted charsets ordered from highest quality to lowest.
 
     Accept-Charset: iso-8859-5;q=.2, unicode-1-1;q=0.8
     // => ["unicode-1-1", "iso-8859-5"]
