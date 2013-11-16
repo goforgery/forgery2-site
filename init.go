@@ -16,7 +16,7 @@ func init() {
 
     app.Engine(".html", fmustache.Make())
 
-    app.Locals["title"] = "Forgery"
+    app.Locals["title"] = "forgery - web application framework for golang"
 
     /*
         API Reference Page.

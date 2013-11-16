@@ -1,1 +1,13 @@
-[API Referencee](/api.html) [![Build Status](https://secure.travis-ci.org/ricallinson/forgery.png?branch=master)](http://travis-ci.org/ricallinson/forgery)
+The [forgery](https://github.com/ricallinson/forgery) library is a clone of the superb [Node.js](http://nodejs.org/) library [Express](http://expressjs.com/) and doesn't pretend to be anything else.
+
+### Web Application Framework for Golang
+
+Forgery is a minimal and flexible [golang](http://golang.org/) web application framework, providing a robust set of features for building single and multi-page web applications.
+
+### APIs
+
+With a myriad of HTTP utility methods and [Stackr](http://gostackr.appspot.com/) middleware at your disposal, creating a robust user-friendly API is quick and easy.
+
+### Performance
+
+Forgery provides a thin layer of features fundamental to any web application, without obscuring features that you know and love in [golang](http://golang.org/).
