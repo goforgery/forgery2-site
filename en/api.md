@@ -199,27 +199,227 @@ If running in side a container such as the [Google App Engine](https://developer
 
 ## Request
 
-* req.Ip
-* req.Ips
-* req.Path
-* req.Xhr
-* req.Protocol
-* req.Secure
+### req.Params
+
+This feature is not supported yet.
+
+### req.Query
+
+This property is an object containing the first item of parsed query-string parameters.
+
+    // GET /search?q=ric+allinson
+    req.Query["q"]
+    // => "ric allinson"
+
+### req.Body
+
+This property is an object containing the first item of the parsed request body. This feature is provided by the `http.PostForm` property, though other body parsing middleware may populate this property instead.
+
+    // POST user=ric&email=ric@randomism.org
+    req.Body["user"]
+    // => "ric"
+
+    req.Body["email"]
+    // => "ric@randomism.org"
+
+### req.Files
+
+This feature is not supported yet.
+
+### req.Param(name)
+
+Return the value of param `name` when present.
+
+    // ?name=ric
+    req.Param("name")
+    // => "ric"
+
+    // POST name=ric
+    req.Param("name")
+    // => "ric"
+
+Lookup is performed in the following order:
+
 * req.Params
-* __TBD__ req.Route
-* req.Get()
-* req.Param()
-* req.Cookie()
-* req.SignedCookie()
-* req.Fresh()
-* req.Stale()
-* req.Is()
-* req.Accepts()
-* req.AcceptsCharset()
-* req.AcceptsLanguage()
-* req.Accepted()
-* req.AcceptedLanguages()
-* req.AcceptedCharsets()
+* req.Body
+* req.Query
+
+Direct access to `req.Body`, `req.Params`, and `req.Query` should be favored for clarity - unless you truly accept input from each object.
+
+### req.Route
+
+This feature is not supported yet.
+
+### req.Cookie(name, [interface])
+
+Returns the cookie value for `name` and optionally populates the given `interface`. Cookie values are URL and base64 encoded.
+
+    // Cookie: foo=bar
+    req.cookie("foo")
+    // => "bar"
+
+    // Cookie: foo=eyJmb28iOiJiYXIifQ%3D%3D
+    var f map[string]interface{}
+    t := req.Cookie("foo", &f)
+    // f["foo"] == "bar"
+
+### req.SignedCookie(name, [interface])
+
+Contains the signed cookies sent by the user-agent, unsigned and ready for use. Signed cookies are accessed by a different function to show developer intent, otherwise a malicious attack could be placed on `req.Cookie` values which are easy to spoof. Note that signing a cookie does not mean it is "hidden" nor encrypted, this simply prevents tampering as the secret used to sign is private.
+
+    // Cookie: foo=YmFyLld2WHdGQVBpaDNuQllfWUJhWWp3MmlONmN6VTFqam5MNjU1ZHZrcnFjbE09
+    req.SignedCookie("foo")
+    // => "bar"
+
+    // Cookie: foo=eyJmb28iOiJiYXIifS5QU1hjUGdOS3NwZFR6Q3BmOW1qN2JFR2RTUUx3MU5nWTRkMkE2QXpFTktjPQ%3D%3D
+    var f map[string]interface{}
+    t := req.Cookie("foo", &f)
+    // f["foo"] == "bar"
+
+### req.Get(field)
+
+Get the case-insensitive request header `field`. The __Referrer__ and __Referer__ fields are interchangeable.
+
+    req.Get("Content-Type")
+    // => "text/plain"
+
+    req.Get("content-type")
+    // => "text/plain"
+
+    req.Get("Something")
+    // => undefined
+
+Alias for `req.Header.Get(field)`.
+
+### req.Accepts(types)
+
+Check if the given type is acceptable, returning true or false - in which case you should respond with 406 "Not Acceptable".
+
+The type value must be a single mime type string such as "application/json" or the extension name such as "json".
+
+    // Accept: text/html, application/json
+    req.accepts("application/json")
+    // => true
+
+### req.Accepted()
+
+Return an slice of Accepted media types ordered from highest quality to lowest.
+
+    // Accept: "text/html, application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    req.Accepted()
+    // ["text/html", "application/xhtml+xml", "application/xml", "*.*"]
+
+### req.Is(type)
+
+Check if the incoming request contains the "Content-Type" header field, and it matches the give mime `type`.
+
+    // With Content-Type: text/html; charset=utf-8
+    req.Is("html");
+    req.Is("text/html");
+    // => true
+
+    // When Content-Type is application/json
+    req.Is("json");
+    req.Is("application/json");
+    // => true
+
+    req.Is("html");
+    // => false
+
+### req.Ip
+
+Return the remote address, or when "trust proxy" is enabled - the upstream address.
+
+    req.Ip
+    // => "127.0.0.1"
+
+### req.Ips
+
+When "trust proxy" is `true`, parse the "X-Forwarded-For" ip address list and return an array, otherwise an empty array is returned. For example if the value were "client, proxy1, proxy2" you would receive the array `["client", "proxy1", "proxy2"]` where "proxy2" is the furthest down-stream.
+
+### req.Path
+
+Returns the request URL pathname.
+
+    // example.com/users?sort=desc
+    req.Path
+    // => "/users"
+
+### req.Host
+
+Returns the hostname from the "Host" header field.
+
+    // Host: "example.com:3000"
+    req.Host
+    // => "example.com"
+
+### req.Fresh()
+
+Check if the request is fresh - aka Last-Modified and/or the ETag still match, indicating that the resource is "fresh".
+
+    req.Fresh()
+    // => true
+
+### req.Stale()
+
+Check if the request is stale - aka Last-Modified and/or the ETag do not match, indicating that the resource is "stale".
+
+    req.Stale()
+    // => true
+
+### req.Xhr
+
+Check if the request was issued with the "X-Requested-With" header field set to "XMLHttpRequest" (jQuery etc).
+
+    req.Xhr
+    // => true
+
+### req.Protocol
+
+Return the protocol string "http" or "https" when requested with TLS. When the "trust proxy" setting is enabled the "X-Forwarded-Proto" header field will be trusted. If you"re running behind a reverse proxy that supplies https for you this may be enabled.
+
+    req.Protocol
+    // => "http"
+
+### req.Secure
+
+Check if a TLS connection is established. This is a short-hand for:
+
+    "https" == req.Protocol;
+
+### req.Subdomains
+
+This feature is not supported yet.
+
+### req.OriginalUrl
+
+This property is much like `req.Url`, however it retains the original request url, allowing you to rewrite `req.Url` freely for internal routing purposes. For example the "mounting" feature of `app.Use()` will rewrite `req.Url` to strip the mount point.
+
+    // GET /search?q=something
+    req.OriginalUrl
+    // => "/search?q=something"
+
+### req.AcceptedLanguages()
+
+Return an array of Accepted languages ordered from highest quality to lowest.
+
+    Accept-Language: en;q=.5, en-us
+    // => ["en-us", "en"]
+
+### req.AcceptedCharsets()
+
+Return an array of Accepted charsets ordered from highest quality to lowest.
+
+    Accept-Charset: iso-8859-5;q=.2, unicode-1-1;q=0.8
+    // => ["unicode-1-1", "iso-8859-5"]
+
+### req.AcceptsCharset(charset)
+
+Check if the given charset is acceptable.
+
+### req.AcceptsLanguage(lang)
+
+Check if the given lang is acceptable.
 
 ## Response
 
