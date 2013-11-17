@@ -423,20 +423,93 @@ Check if the given lang is acceptable.
 
 ## Response
 
+### res.Status(code)
+
+Alias of `stackr.StatusCode`.
+
+    res.Status(404);
+
+### res.Set(field, value)
+
+Set header `field` to `value`.
+
+res.set("Content-Type", "text/plain");
+
+Alias of `http.ResponseWriter.Header().Set(field, value)`.
+
+### res.Get(field)
+
+Get the case-insensitive response header `field`.
+
+    res.Get("Content-Type");
+    // => "text/plain"
+
+Alias of `http.ResponseWriter.Header().Get(field)`
+
+### res.Cookie(name, value, [options])
+
+Set cookie `name` to `value`, where `value` may be a string or an interface that will be converted to JSON. The path option defaults to "/". Options are passed as a (http.Cookie)[http://golang.org/pkg/net/http/#Cookie].
+
+    res.Cookie("name", "ric")
+
+The maxAge option is a convenience option for setting "expires" relative to the current time in milliseconds.
+
+    res.Cookie("rememberme", "1", &http.Cookie{MaxAge: 900000, HttpOnly: true})
+
+An interface may be passed which is then serialized as JSON.
+
+    res.Cookie("cart", map[string]string{"name": "ric"})
+    res.Cookie("cart", map[string]string{"name": "ric"}, &http.Cookie{MaxAge: 900000})
+
+All cookie `values` are URL and base64 encoded.
+
+### res.SignedCookie(name, value, [options])
+
+Same as `res.Cookie(name, value, [options])` except that the cookie is signed.
+
+### res.ClearCookie(name, [options])
+
+Clear cookie `name`. The `path` option defaults to "/".
+
+    res.Cookie("name", "ric", &http.Cookie{path: "/admin"})
+    res.ClearCookie("name", &http.Cookie{path: "/admin"})
+
+### res.Redirect(url, [status])
+
+Redirect to the given `url` with optional `status` code defaulting to 302 "Found".
+
+    res.Redirect("/foo/bar");
+    res.Redirect("http://example.com");
+    res.Redirect("http://example.com", 301);
+    res.Redirect("../login");
+
+Forgery supports a few forms of redirection, first being a fully qualified URI for redirecting to a different site:
+
+    res.Redirect("http://yahoo.com");
+
+The second form is the pathname-relative redirect, for example if you were on `http://example.com/admin/post/new`, the following redirect to `/admin` would land you at `http://example.com/admin`:
+
+    res.Redirect("/admin");
+
+This next redirect is relative to the `mount` point of the application. For example if you have a blog application mounted at `/blog`, ideally it has no knowledge of where it was mounted, so where a redirect of /admin/post/new would simply give you `http://example.com/admin/post/new`, the following mount-relative redirect would give you `http://example.com/blog/admin/post/new`:
+
+    res.Redirect("admin/post/new");
+
+Pathname relative redirects are also possible. If you were on `http://example.com/admin/post/new`, the following redirect would land you at `http//example.com/admin/post`:
+
+    res.Redirect("..");
+
+The final special-case is a back redirect, redirecting back to the Referer, defaulting to / when missing.
+
+    res.Redirect("back");
+
 * res.Charset
 * res.Locals
-* res.Status()
 * res.ContentType()
-* res.Get()
-* res.Set()
 * res.Send()
 * res.Json()
 * res.Jsonp()
 * res.Render()
-* res.Redirect()
-* res.Cookie()
-* req.SignedCookie()
-* res.ClearCookie()
 * res.Sendfile()
 * res.Download()
 * res.Format()
