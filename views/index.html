@@ -6,18 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-	<!-- <a href="https://github.com/ricallinson/forgery"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a> -->
 	<div class="head">
-		<div class="nav">
+		<h1>
+			<a href="/">forgery</a>
+			<!-- <a href="http://travis-ci.org/ricallinson/forgery"><img src="https://secure.travis-ci.org/ricallinson/forgery.png?branch=master" width="77" height="19"/></a> -->
+		</h1>
+		<span class="nav">
 			<a href="/">Home</a>
 			<a href="/api.html">API Referencee</a>
-		</div>
-		<h1>
-			<a href="/">forgery<a/>
-			<a href="http://travis-ci.org/ricallinson/forgery"><img src="https://secure.travis-ci.org/ricallinson/forgery.png?branch=master" width="77" height="19"/></a>
-		</h1>
+			<a href="https://github.com/ricallinson/forgery">GitHub</a>
+		</span>
 	</div>
-	<div class="main">
+	<div class="main {{class}}">
 		{{{body}}}
 	</div>
 	<div class="footer">
@@ -26,5 +26,7 @@
 		<a href="https://github.com/hoisie/mustache">Mustache</a>
 		and <a href="https://github.com/russross/blackfriday">Blackfriday</a>
 	</div>
+	<script src="/jquery-1.10.1.min.js"></script>
+	<script src="/nav.js"></script>
   </body>
 </html>
