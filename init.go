@@ -12,7 +12,8 @@ func init() {
 
     app := f.CreateServer()
 
-    app.Use("/", stackr.Static())
+    app.Use(stackr.Favicon())
+    app.Use(stackr.Static())
 
     app.Engine(".html", fmustache.Make())
 

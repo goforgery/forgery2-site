@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<title>{{title}}</title>
-	<link rel="stylesheet" href="screen.css" media="screen" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-	<div class="head">
-		<h1>
-			<a href="/">forgery</a>
-			<!-- <a href="http://travis-ci.org/ricallinson/forgery"><img src="https://secure.travis-ci.org/ricallinson/forgery.png?branch=master" width="77" height="19"/></a> -->
-		</h1>
-		<span class="nav">
-			<a href="/">Home</a>
-			<a href="/api.html">API Referencee</a>
-			<a href="https://github.com/ricallinson/forgery">GitHub</a>
-		</span>
-	</div>
-	<div class="main {{class}}">
-		{{{body}}}
-	</div>
-	<div class="footer">
-		Hosted by <a href="http://code.google.com/appengine/">Google App Engine</a>
-		using <a href="https://github.com/ricallinson/forgery">Forgery</a>,
-		<a href="https://github.com/hoisie/mustache">Mustache</a>
-		and <a href="https://github.com/russross/blackfriday">Blackfriday</a>
-	</div>
-	<script src="/jquery-1.10.1.min.js"></script>
-	<script src="/nav.js"></script>
-  </body>
+	<head>
+		<title>{{title}}</title>
+		<link rel="stylesheet" href="screen.css" media="screen" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class="head">
+			<h1>forgery</h1>
+			<span class="nav">
+				<a href="/">Home</a>
+				<a href="/api.html">API Referencee</a>
+				<a href="https://github.com/ricallinson/forgery">GitHub</a>
+			</span>
+		</div>
+		<div class="main {{class}}">
+			{{{body}}}
+		</div>
+		<div class="footer">
+			Hosted by <a href="http://code.google.com/appengine/">Google App Engine</a>
+			using <a href="https://github.com/ricallinson/forgery">Forgery</a>,
+			<a href="https://github.com/hoisie/mustache">Mustache</a>
+			and <a href="https://github.com/russross/blackfriday">Blackfriday</a>
+		</div>
+		<script src="/jquery-1.10.1.min.js"></script>
+		<script src="/nav.js"></script>
+	</body>
 </html>
