@@ -66,7 +66,7 @@
 * [res.Locals](#res.Locals)
 * [res.Render()](#res.Render)
 
-## <a name="f.CreateServer"></a>f.CreateServer()
+## <a class="jump" name="f.CreateServer"></a>f.CreateServer()
 
 Create a forgery application.
 
@@ -82,9 +82,9 @@ Create a forgery application.
         app.Listen(3000)
     }
 
-## <a name="Application"></a>Application
+## <a class="jump" name="Application"></a>Application
 
-### <a name="app.Set"></a>app.Set(name, value)
+### <a class="jump" name="app.Set"></a>app.Set(name, value)
 
 Assigns setting `name` to `value`.
 
@@ -92,7 +92,7 @@ Assigns setting `name` to `value`.
     app.Get("title")
     // => "My Site"
 
-### <a name="app.Get"></a>app.Get(name)
+### <a class="jump" name="app.Get"></a>app.Get(name)
 
 Get setting `name` value.
 
@@ -103,7 +103,7 @@ Get setting `name` value.
     app.Get("title")
     // => "My Site"
 
-### <a name="app.Enable"></a>app.Enable(name)
+### <a class="jump" name="app.Enable"></a>app.Enable(name)
 
 Set setting `name` to `true`.
 
@@ -111,7 +111,7 @@ Set setting `name` to `true`.
     app.Get("trust proxy")
     // => "true"
 
-### <a name="app.Disable"></a>app.Disable(name)
+### <a class="jump" name="app.Disable"></a>app.Disable(name)
 
 Set setting `name` to `false`.
 
@@ -119,7 +119,7 @@ Set setting `name` to `false`.
     app.Get("trust proxy")
     // => "false"
 
-### <a name="app.Enabled"></a>app.Enabled(name)
+### <a class="jump" name="app.Enabled"></a>app.Enabled(name)
 
 Check if setting `name` is enabled.
 
@@ -130,7 +130,7 @@ Check if setting `name` is enabled.
     app.Enabled("trust proxy")
     // => true
 
-### <a name="app.Disabled"></a>app.Disabled(name)
+### <a class="jump" name="app.Disabled"></a>app.Disabled(name)
 
 Check if setting `name` is disabled.
 
@@ -141,7 +141,7 @@ Check if setting `name` is disabled.
     app.Disabled("trust proxy")
     // => false
 
-### <a name="app.Configure"></a>app.Configure([env], callback)
+### <a class="jump" name="app.Configure"></a>app.Configure([env], callback)
 
 Conditionally invoke `callback` when `env` matches `app.get("env")`. This method is effectively an `if` statement as illustrated in the following snippets. These functions are __not__ required in order to use `app.set()` and other configuration methods.
 
@@ -175,7 +175,7 @@ effectively sugar for:
         app.Set("db uri", "n.n.n.n/prod")
     }
 
-### <a name="Application_Settings"></a>Application Settings
+### <a class="jump" name="Application_Settings"></a>Application Settings
 
 The following settings are provided to alter how Forgery will behave:
 
@@ -190,21 +190,21 @@ The following settings are provided to alter how Forgery will behave:
 * _view engine_ The default engine extension to use when omitted
 * _views_ The view directory path, defaulting to "./views"
 
-### <a name="app.Use"></a>app.Use([path], function)
+### <a class="jump" name="app.Use"></a>app.Use([path], function)
 
 Wrapper for `stackr.Use()`. See the [Stackr](http://gostackr.appspot.com/) documentation for details.
 
-### <a name="app.Engine"></a>app.Engine(ext, callback)
+### <a class="jump" name="app.Engine"></a>app.Engine(ext, callback)
 
 Register the given template engine `callback` as `ext`.
 
     app.Engine(".html", fmustache.Make())
 
-### <a name="app.Param"></a>TBD app.Param([name], callback)
+### <a class="jump" name="app.Param"></a>TBD app.Param([name], callback)
 
 This feature is not supported yet.
 
-### <a name="app.VERB"></a>app.VERB(path, [callback...], callback)
+### <a class="jump" name="app.VERB"></a>app.VERB(path, [callback...], callback)
 
 The `app.VERB()` methods provide the routing functionality in Forgery, where __VERB__ is one of the HTTP verbs, such as `app.Post()`. Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke `next("route")` to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is no reason to proceed with the route matched.
 
@@ -216,7 +216,7 @@ The following snippet illustrates the most simple route definition possible. For
 
 __NOTE: Regular expressions and route parameters are not supported yet__.
 
-### <a name="app.All"></a>app.All(path, [callback...], callback)
+### <a class="jump" name="app.All"></a>app.All(path, [callback...], callback)
 
 This method functions just like the `app.VERB()` methods, however it matches all HTTP verbs.
 
@@ -234,13 +234,13 @@ Another great example of this is white-listed "global" functionality. Here the e
     app.all("/api/", requireAuthentication)
 
 
-### <a name="app.Locals"></a>app.Locals
+### <a class="jump" name="app.Locals"></a>app.Locals
 
 Application local variables are provided to all templates rendered within the application. This is useful for providing app-level data.
 
     app.Locals["title"] = "My App";
 
-### <a name="app.Render"></a>app.Render(view, [locals...])
+### <a class="jump" name="app.Render"></a>app.Render(view, [locals...])
 
 Render a `view` file returning with the rendered string. This is the app-level variant of `res.Render()`, and otherwise behaves the same way.
 
@@ -248,11 +248,11 @@ Render a `view` file returning with the rendered string. This is the app-level v
         "body": "Document body",
     })
 
-### <a name="app.Router"></a>app.Router
+### <a class="jump" name="app.Router"></a>app.Router
 
 This feature is not supported yet.
 
-### <a name="app.Listen"></a>app.Listen(port)
+### <a class="jump" name="app.Listen"></a>app.Listen(port)
 
 Bind and listen for connections on the given host and port, this method is [stackr.Listen()](http://gostackr.appspot.com/).
 
@@ -263,13 +263,13 @@ If running in side a container such as the [Google App Engine](https://developer
 
     http.Handle("/", app)
 
-## <a name="f.Request"></a>f.Request
+## <a class="jump" name="f.Request"></a>f.Request
 
-### <a name="req.Params"></a>req.Params
+### <a class="jump" name="req.Params"></a>req.Params
 
 This feature is not supported yet.
 
-### <a name="req.Query"></a>req.Query
+### <a class="jump" name="req.Query"></a>req.Query
 
 This property is a map containing the first item of parsed query-string parameters.
 
@@ -277,7 +277,7 @@ This property is a map containing the first item of parsed query-string paramete
     req.Query["q"]
     // => "ric allinson"
 
-### <a name="req.Body"></a>req.Body
+### <a class="jump" name="req.Body"></a>req.Body
 
 This property is a map containing the first item of the parsed request body. This feature is provided by the `http.PostForm` property, though other body parsing middleware may populate this property instead.
 
@@ -288,11 +288,11 @@ This property is a map containing the first item of the parsed request body. Thi
     req.Body["email"]
     // => "ric@randomism.org"
 
-### <a name="req.Files"></a>req.Files
+### <a class="jump" name="req.Files"></a>req.Files
 
 This feature is not supported yet.
 
-### <a name="req.Param"></a>req.Param(name)
+### <a class="jump" name="req.Param"></a>req.Param(name)
 
 Return the value of param `name` when present.
 
@@ -312,11 +312,11 @@ Lookup is performed in the following order:
 
 Direct access to `req.Body`, `req.Params`, and `req.Query` should be favored for clarity - unless you truly accept input from each object.
 
-### <a name="req.Route"></a>req.Route
+### <a class="jump" name="req.Route"></a>req.Route
 
 This feature is not supported yet.
 
-### <a name="req.Cookie"></a>req.Cookie(name, [interface])
+### <a class="jump" name="req.Cookie"></a>req.Cookie(name, [interface])
 
 Returns the cookie value for `name` and optionally populates the given `interface`. Cookie values are URL and base64 encoded.
 
@@ -329,7 +329,7 @@ Returns the cookie value for `name` and optionally populates the given `interfac
     t := req.Cookie("foo", &f)
     // f["foo"] == "bar"
 
-### <a name="req.SignedCookie"></a>req.SignedCookie(name, [interface])
+### <a class="jump" name="req.SignedCookie"></a>req.SignedCookie(name, [interface])
 
 Contains the signed cookies sent by the user-agent, unsigned and ready for use. Signed cookies are accessed by a different function to show developer intent, otherwise a malicious attack could be placed on `req.Cookie` values which are easy to spoof. Note that signing a cookie does not mean it is "hidden" nor encrypted, this simply prevents tampering as the secret used to sign is private.
 
@@ -342,7 +342,7 @@ Contains the signed cookies sent by the user-agent, unsigned and ready for use. 
     t := req.SignedCookie("foo", &f)
     // f["foo"] == "bar"
 
-### <a name="req.Get"></a>req.Get(field)
+### <a class="jump" name="req.Get"></a>req.Get(field)
 
 Get the case-insensitive request header `field`.
 
@@ -357,7 +357,7 @@ Get the case-insensitive request header `field`.
 
 Alias for `req.Header.Get(field)`.
 
-### <a name="req.Accepts"></a>req.Accepts(types)
+### <a class="jump" name="req.Accepts"></a>req.Accepts(types)
 
 Check if the given type is acceptable, returning true or false - in which case you should respond with 406 "Not Acceptable".
 
@@ -367,7 +367,7 @@ The type value must be a single mime type string such as "application/json".
     req.accepts("application/json")
     // => true
 
-### <a name="req.Accepted"></a>req.Accepted()
+### <a class="jump" name="req.Accepted"></a>req.Accepted()
 
 Return an slice of Accepted media types ordered from highest quality to lowest.
 
@@ -375,7 +375,7 @@ Return an slice of Accepted media types ordered from highest quality to lowest.
     req.Accepted()
     // ["text/html", "application/xhtml+xml", "application/xml", "*.*"]
 
-### <a name="req.Is"></a>req.Is(type)
+### <a class="jump" name="req.Is"></a>req.Is(type)
 
 Check if the incoming request contains the "Content-Type" header field, and it matches the give mime `type`.
 
@@ -392,18 +392,18 @@ Check if the incoming request contains the "Content-Type" header field, and it m
     req.Is("html")
     // => false
 
-### <a name="req.Ip"></a>req.Ip
+### <a class="jump" name="req.Ip"></a>req.Ip
 
 Return the remote address, or when "trust proxy" is enabled - the upstream address.
 
     req.Ip
     // => "127.0.0.1"
 
-### <a name="req.Ips"></a>req.Ips
+### <a class="jump" name="req.Ips"></a>req.Ips
 
 When "trust proxy" is `true`, parse the "X-Forwarded-For" ip address list and return an array, otherwise an empty array is returned. For example if the value were "client, proxy1, proxy2" you would receive the array `["client", "proxy1", "proxy2"]` where "proxy2" is the furthest down-stream.
 
-### <a name="req.Path"></a>req.Path
+### <a class="jump" name="req.Path"></a>req.Path
 
 Returns the request URL pathname.
 
@@ -411,7 +411,7 @@ Returns the request URL pathname.
     req.Path
     // => "/users"
 
-### <a name="req.Host"></a>req.Host
+### <a class="jump" name="req.Host"></a>req.Host
 
 Returns the hostname from the "Host" header field.
 
@@ -419,45 +419,45 @@ Returns the hostname from the "Host" header field.
     req.Host
     // => "example.com"
 
-### <a name="req.Fresh"></a>req.Fresh()
+### <a class="jump" name="req.Fresh"></a>req.Fresh()
 
 Check if the request is fresh - aka Last-Modified and/or the ETag still match, indicating that the resource is "fresh".
 
     req.Fresh()
     // => true
 
-### <a name="req.Stale"></a>req.Stale()
+### <a class="jump" name="req.Stale"></a>req.Stale()
 
 Check if the request is stale - aka Last-Modified and/or the ETag do not match, indicating that the resource is "stale".
 
     req.Stale()
     // => true
 
-### <a name="req.Xhr"></a>req.Xhr
+### <a class="jump" name="req.Xhr"></a>req.Xhr
 
 Check if the request was issued with the "X-Requested-With" header field set to "XMLHttpRequest" (jQuery etc).
 
     req.Xhr
     // => true
 
-### <a name="req.Protocol"></a>req.Protocol
+### <a class="jump" name="req.Protocol"></a>req.Protocol
 
 Return the protocol string "http" or "https" when requested with TLS. When the "trust proxy" setting is enabled the "X-Forwarded-Proto" header field will be trusted. If you"re running behind a reverse proxy that supplies https for you this may be enabled.
 
     req.Protocol
     // => "http"
 
-### <a name="req.Secure"></a>req.Secure
+### <a class="jump" name="req.Secure"></a>req.Secure
 
 Check if a TLS connection is established. This is a short-hand for:
 
     "https" == req.Protocol;
 
-### <a name="req.Subdomains"></a>req.Subdomains()
+### <a class="jump" name="req.Subdomains"></a>req.Subdomains()
 
 This feature is not supported yet.
 
-### <a name="req.OriginalUrl"></a>req.OriginalUrl
+### <a class="jump" name="req.OriginalUrl"></a>req.OriginalUrl
 
 This property is much like `req.Url`, however it retains the original request url, allowing you to rewrite `req.Url` freely for internal routing purposes. For example the "mounting" feature of `app.Use()` will rewrite `req.Url` to strip the mount point.
 
@@ -465,37 +465,37 @@ This property is much like `req.Url`, however it retains the original request ur
     req.OriginalUrl
     // => "/search?q=something"
 
-### <a name="req.AcceptedLanguages"></a>req.AcceptedLanguages()
+### <a class="jump" name="req.AcceptedLanguages"></a>req.AcceptedLanguages()
 
 Return a slice of Accepted languages ordered from highest quality to lowest.
 
     Accept-Language: en;q=.5, en-us
     // => ["en-us", "en"]
 
-### <a name="req.AcceptedCharsets"></a>req.AcceptedCharsets()
+### <a class="jump" name="req.AcceptedCharsets"></a>req.AcceptedCharsets()
 
 Return a slice of Accepted charsets ordered from highest quality to lowest.
 
     Accept-Charset: iso-8859-5;q=.2, unicode-1-1;q=0.8
     // => ["unicode-1-1", "iso-8859-5"]
 
-### <a name="req.AcceptsCharset"></a>req.AcceptsCharset(charset)
+### <a class="jump" name="req.AcceptsCharset"></a>req.AcceptsCharset(charset)
 
 Check if the given charset is acceptable.
 
-### <a name="req.AcceptsLanguage"></a>req.AcceptsLanguage(lang)
+### <a class="jump" name="req.AcceptsLanguage"></a>req.AcceptsLanguage(lang)
 
 Check if the given lang is acceptable.
 
-## <a name="f.Response"></a>f.Response
+## <a class="jump" name="f.Response"></a>f.Response
 
-### <a name="res.Status"></a>res.Status(code)
+### <a class="jump" name="res.Status"></a>res.Status(code)
 
 Alias of `stackr.StatusCode`.
 
     res.Status(404)
 
-### <a name="res.Set"></a>res.Set(field, value)
+### <a class="jump" name="res.Set"></a>res.Set(field, value)
 
 Set header `field` to `value`.
 
@@ -503,7 +503,7 @@ res.set("Content-Type", "text/plain")
 
 Alias of `http.ResponseWriter.Header().Set(field, value)`.
 
-### <a name="res.Get"></a>res.Get(field)
+### <a class="jump" name="res.Get"></a>res.Get(field)
 
 Get the case-insensitive response header `field`.
 
@@ -512,7 +512,7 @@ Get the case-insensitive response header `field`.
 
 Alias of `http.ResponseWriter.Header().Get(field)`
 
-### <a name="res.Cookie"></a>res.Cookie(name, value, [options])
+### <a class="jump" name="res.Cookie"></a>res.Cookie(name, value, [options])
 
 Set cookie `name` to `value`, where `value` may be a string or an interface that will be converted to JSON. The path option defaults to "/". Options are passed as a (http.Cookie)[http://golang.org/pkg/net/http/#Cookie].
 
@@ -529,18 +529,18 @@ An interface may be passed which is then serialized as JSON.
 
 All cookie `values` are URL and base64 encoded.
 
-### <a name="res.SignedCookie"></a>res.SignedCookie(name, value, [options])
+### <a class="jump" name="res.SignedCookie"></a>res.SignedCookie(name, value, [options])
 
 Same as `res.Cookie(name, value, [options])` except that the cookie is signed.
 
-### <a name="res.ClearCookie"></a>res.ClearCookie(name, [options])
+### <a class="jump" name="res.ClearCookie"></a>res.ClearCookie(name, [options])
 
 Clear cookie `name`. The `path` option defaults to "/".
 
     res.Cookie("name", "ric", &http.Cookie{path: "/admin"})
     res.ClearCookie("name", &http.Cookie{path: "/admin"})
 
-### <a name="res.Redirect"></a>res.Redirect(url, [status])
+### <a class="jump" name="res.Redirect"></a>res.Redirect(url, [status])
 
 Redirect to the given `url` with optional `status` code defaulting to 302 "Found".
 
@@ -569,7 +569,7 @@ The final special-case is a back redirect, redirecting back to the Referer, defa
 
     res.Redirect("back")
 
-### <a name="res.Location"></a>res.Location(uri)
+### <a class="jump" name="res.Location"></a>res.Location(uri)
 
 Set the location header.
 
@@ -581,7 +581,7 @@ Set the location header.
 
 You can use the same kind of urls as in res.Redirect().
 
-### <a name="res.Charset"></a>res.Charset
+### <a class="jump" name="res.Charset"></a>res.Charset
 
 Assign the `charset`. Defaults to "utf-8".
 
@@ -589,7 +589,7 @@ Assign the `charset`. Defaults to "utf-8".
     res.send("some html")
     // => Content-Type: text/html; charset=value
 
-### <a name="res.Send"></a>res.Send()
+### <a class="jump" name="res.Send"></a>res.Send()
 
 Send a response.
 
@@ -617,7 +617,7 @@ Finally when a `int` is given without any of the previously mentioned bodies, th
     res.Send(404)
     res.Send(500)
 
-### <a name="res.Json"></a>res.Json(body, [status])
+### <a class="jump" name="res.Json"></a>res.Json(body, [status])
 
 Send a JSON response. This method is identical to `res.Send()` when an `interface` is passed, however it may be used for explicit JSON conversion of non-objects (null, undefined, etc), though these are technically not valid JSON.
 
@@ -625,7 +625,7 @@ Send a JSON response. This method is identical to `res.Send()` when an `interfac
     res.Json(map[string]string{"user": "ric"})
     res.Json(map[string]string{"error": "message"}, 500)
 
-### <a name="res.Jsonp"></a>res.Jsonp(body, [status])
+### <a class="jump" name="res.Jsonp"></a>res.Jsonp(body, [status])
 
 Send a JSON response with JSONP support. This method is identical to res.json() however opts-in to JSONP callback support.
 
@@ -650,7 +650,7 @@ By default the JSONP callback name is simply `callback`, however you may alter t
     res.Json(map[string]string{"error": "message"}, 500)
     // => foo({ "error": "message" })
 
-### <a name="res.ContentType"></a>res.ContentType(type)
+### <a class="jump" name="res.ContentType"></a>res.ContentType(type)
 
 Sets the Content-Type to the mime lookup of `type`, or when "/" is present the Content-Type is simply set to this literal value.
 
@@ -660,7 +660,7 @@ Sets the Content-Type to the mime lookup of `type`, or when "/" is present the C
     res.ContentType("application/json")
     res.ContentType("png")
 
-### <a name="res.Format"></a>res.Format(map[string]func())
+### <a class="jump" name="res.Format"></a>res.Format(map[string]func())
 
 Performs content-negotiation on the request Accept header field when present. This method uses `req.Accepted()`, a slice of acceptable types ordered by their quality values, otherwise the first callback is invoked. When no match is performed the server responds with 406 "Not Acceptable", or invokes the `default` callback.
 
@@ -682,7 +682,7 @@ The following example would respond with `{"message": "hey"}` when the Accept he
         }
     })
 
-### <a name="res.Attachment"></a>res.Attachment([filename])
+### <a class="jump" name="res.Attachment"></a>res.Attachment([filename])
 
 Sets the Content-Disposition header field to "attachment". If a `filename` is given then the Content-Type will be automatically set based on the extname via `res.ContentType()`, and the Content-Disposition"s "filename=" parameter will be set.
 
@@ -693,11 +693,11 @@ Sets the Content-Disposition header field to "attachment". If a `filename` is gi
     // Content-Disposition: attachment; filename="logo.png"
     // Content-Type: image/png
 
-### <a name="res.Sendfile"></a>res.Sendfile(path)
+### <a class="jump" name="res.Sendfile"></a>res.Sendfile(path)
 
 Transfer the file at the given `path`. Alias for [http.ServeFile](http://golang.org/pkg/net/http/#ServeFile).
 
-### <a name="res.Download"></a>res.Download(path, [filename])
+### <a class="jump" name="res.Download"></a>res.Download(path, [filename])
 
 Transfer the file at `path` as an "attachment", typically browsers will prompt the user for download. The Content-Disposition "filename=" parameter, aka the one that will appear in the browser dialog is set to `path` by default, however you may provide an override `filename`.
 
@@ -707,7 +707,7 @@ Transfer the file at `path` as an "attachment", typically browsers will prompt t
 
 Uses `req.Send()` to do the file transfer.
 
-### <a name="res.Links"></a>res.Links(link, rel)
+### <a class="jump" name="res.Links"></a>res.Links(link, rel)
 
 Join the given `link`, `rel` to populate the "Link" response header field.
 
@@ -719,7 +719,7 @@ yields:
     Link: <http://api.example.com/users?page=2>; rel="next", 
           <http://api.example.com/users?page=5>; rel="last"
 
-### <a name="res.Locals"></a>res.Locals
+### <a class="jump" name="res.Locals"></a>res.Locals
 
 Response local variables are scoped to the request, thus only available to the view(s) rendered during that request / response cycle, if any. Otherwise this API is identical to `app.Locals`.
 
@@ -731,7 +731,7 @@ This object is useful for exposing request-level information such as the request
         next()
     })
 
-### <a name="res.Render"></a>res.Render(view, [locals...])
+### <a class="jump" name="res.Render"></a>res.Render(view, [locals...])
 
 Render the `view` file responding with the rendered string using `res.Send()`. The `view` file is located using the `views` setting.
 
