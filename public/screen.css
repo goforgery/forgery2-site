@@ -45,6 +45,15 @@ em {
     font-family: monospace;
 }
 
+a {
+    color: #259dff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .head {
     position: fixed;
     z-index: 10000;
@@ -101,7 +110,6 @@ em {
 }
 
 .api ul:nth-of-type(1) li a:hover {
-    color: #999;
     text-decoration: underline;
 }
 
