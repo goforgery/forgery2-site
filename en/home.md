@@ -1,4 +1,4 @@
-The [forgery](https://github.com/ricallinson/forgery) library is a clone of the superb [Node.js](http://nodejs.org/) library [Express](http://expressjs.com/) and doesn't pretend to be anything else.
+The [forgery](https://github.com/ricallinson/forgery) library is a clone of the superb [Node.js](http://nodejs.org/) library [Express](http://expressjs.com/) and doesn't pretend to be anything else. As of this moment it's about 90% complete. There are a few minor functions not implemented but most importantly the __URL Routing__ has yet to be written.
 
 ### Web Application Framework for Golang
 

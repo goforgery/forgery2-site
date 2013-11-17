@@ -214,7 +214,7 @@ The following snippet illustrates the most simple route definition possible. For
         res.Send("Hello world.")
     })
 
-__NOTE: Regular expressions and route parameters will be supported in later releases__.
+__NOTE: Regular expressions and route parameters are not supported yet__.
 
 ### <a name="app.All"></a>app.All(path, [callback...], callback)
 

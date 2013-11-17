@@ -100,6 +100,11 @@ em {
     text-decoration: none;
 }
 
+.api ul:nth-of-type(1) li a:hover {
+    color: #999;
+    text-decoration: underline;
+}
+
 .api ul:nth-of-type(1) li strong a {
     color: #555;
     text-decoration: none;
