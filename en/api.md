@@ -503,17 +503,172 @@ The final special-case is a back redirect, redirecting back to the Referer, defa
 
     res.Redirect("back");
 
-* res.Charset
-* res.Locals
-* res.ContentType()
-* res.Send()
-* res.Json()
-* res.Jsonp()
-* res.Render()
-* res.Sendfile()
-* res.Download()
-* res.Format()
-* res.Links()
-* res.Vary()
-* res.Attachment()
-* res.Location()
+### res.Location(uri)
+
+Set the location header.
+
+    res.Location("/foo/bar");
+    res.Location("foo/bar");
+    res.Location("http://example.com");
+    res.Location("../login");
+    res.Location("back");
+
+You can use the same kind of urls as in res.Redirect().
+
+### res.Charset
+
+Assign the `charset`. Defaults to "utf-8".
+
+    res.charset = "value";
+    res.send("some html");
+    // => Content-Type: text/html; charset=value
+
+### res.Send()
+
+Send a response.
+
+    res.Send([]byte{114, 105, 99}]);
+    res.Send(map[string]string{"some": "json"});
+    res.Send("some html");
+    res.Send("Sorry, we cannot find that!", 404);
+    res.Send(map[string]string{"error": "msg"}, 500);
+    res.Send(200);
+
+This method performs a myriad of useful tasks for simple non-streaming responses such as automatically assigning the Content-Length unless previously defined and providing automatic __HEAD__ and HTTP cache freshness support.
+
+When a `string` or `[]byte` is given the Content-Type is set defaulted to "text/html":
+
+    res.Send("some html");
+
+When an `interface` is given forgery will respond with the JSON representation:
+
+    res.Send(map[string]string{"user": "ric"})
+    res.Send([]int{1, 2, 3})
+
+Finally when a `int` is given without any of the previously mentioned bodies, then a response body string is assigned for you. For example 200 will respond will the text "OK", and 404 "Not Found" and so on.
+
+    res.Send(200)
+    res.Send(404)
+    res.Send(500)
+
+### res.Json(body, [status])
+
+Send a JSON response. This method is identical to `res.Send()` when an `interface` is passed, however it may be used for explicit JSON conversion of non-objects (null, undefined, etc), though these are technically not valid JSON.
+
+    res.Json(null)
+    res.Json(map[string]string{"user": "ric"})
+    res.Json(map[string]string{"error": "message"}, 500)
+
+### res.Jsonp(body, [status])
+
+Send a JSON response with JSONP support. This method is identical to res.json() however opts-in to JSONP callback support.
+
+    res.jsonp(null)
+    // => null
+
+    res.Json(map[string]string{"user": "ric"})
+    // => {"user": "ric"}
+
+    res.Json(map[string]string{"error": "message"}, 500)
+    // => {"error": "message"}
+
+By default the JSONP callback name is simply `callback`, however you may alter this with the _jsonp callback name_ setting. The following are some examples of JSONP responses using the same code:
+
+    // ?callback=foo
+    res.Json(map[string]string{"user": "ric"})
+    // => foo({"user": "ric"})
+
+    app.set("jsonp callback name", "cb");
+
+    // ?cb=foo
+    res.Json(map[string]string{"error": "message"}, 500)
+    // => foo({ "error": "message" })
+
+### res.ContentType(type)
+
+Sets the Content-Type to the mime lookup of `type`, or when "/" is present the Content-Type is simply set to this literal value.
+
+    res.ContentType(".html");
+    res.ContentType("html");
+    res.ContentType("json");
+    res.ContentType("application/json");
+    res.ContentType("png");
+
+### res.Format(map[string]func())
+
+Performs content-negotiation on the request Accept header field when present. This method uses `req.Accepted()`, a slice of acceptable types ordered by their quality values, otherwise the first callback is invoked. When no match is performed the server responds with 406 "Not Acceptable", or invokes the `default` callback.
+
+The Content-Type is set for you when a callback is selected, however you may alter this within the callback using `res.Set()` or `res.ContentType()`.
+
+The following example would respond with `{"message": "hey"}` when the Accept header field is set to "application/json" or "*/json", however if "*/*" is given then "hey" will be the response.
+
+    res.Format(map[string]func() {
+        "text/plain": func() {
+            res.Send("hey")
+        },
+
+        "text/html": func() {
+            res.Send("hey")
+        },
+
+        "application/json": func() {
+            res.Send(map[string]string{"message": "hey"})
+        }
+    });
+
+### res.Attachment([filename])
+
+Sets the Content-Disposition header field to "attachment". If a `filename` is given then the Content-Type will be automatically set based on the extname via `res.ContentType()`, and the Content-Disposition"s "filename=" parameter will be set.
+
+    res.Attachment();
+    // Content-Disposition: attachment
+
+    res.Attachment("path/to/logo.png");
+    // Content-Disposition: attachment; filename="logo.png"
+    // Content-Type: image/png
+
+### res.Sendfile(path)
+
+Transfer the file at the given `path`. Alias for [http.ServeFile](http://golang.org/pkg/net/http/#ServeFile).
+
+### res.Download(path, [filename])
+
+Transfer the file at `path` as an "attachment", typically browsers will prompt the user for download. The Content-Disposition "filename=" parameter, aka the one that will appear in the browser dialog is set to `path` by default, however you may provide an override `filename`.
+
+    res.Download("/report-12345.pdf");
+
+    res.Download("/report-12345.pdf", "report.pdf");
+
+Uses `req.Send()` to do the file transfer.
+
+### res.Links(link, rel)
+
+Join the given `link`, `rel` to populate the "Link" response header field.
+
+    res.Links("http://api.example.com/users?page=2", "next")
+    res.Links("http://api.example.com/users?page=5", "last")
+
+yields:
+
+    Link: <http://api.example.com/users?page=2>; rel="next", 
+          <http://api.example.com/users?page=5>; rel="last"
+
+### res.Locals
+
+Response local variables are scoped to the request, thus only available to the view(s) rendered during that request / response cycle, if any. Otherwise this API is identical to `app.Locals`.
+
+This object is useful for exposing request-level information such as the request pathname, authenticated user, user settings etcetera.
+
+    app.All(func(req *f.Request, res *f.Response, next func()) {
+        res.Locals["user"] = req.Map["user"]
+        res.Locals["authenticated"] = req.Map["authenticated"]
+        next()
+    })
+
+### res.Render()
+
+Render the `view` file responding with the rendered string using `res.Send()`.
+
+    res.Render("index.html", map[string]string{
+        "body": "Document body",
+    })
