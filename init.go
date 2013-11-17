@@ -31,6 +31,16 @@ func init() {
     })
 
     /*
+        Guide Page.
+    */
+    app.Get("/guide.html", func(req *f.Request, res *f.Response, next func()) {
+        res.Locals["title"] = "API Reference - Forgery"
+        res.Render("index.html", map[string]string{
+            "body": fmarkdown.Render("./en/guide.md"),
+        })
+    })
+
+    /*
         Default Page.
     */
     app.Get("/", func(req *f.Request, res *f.Response, next func()) {
