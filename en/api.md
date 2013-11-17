@@ -22,57 +22,57 @@ Create a forgery application.
 
 Assigns setting `name` to `value`.
 
-    app.Set("title", "My Site");
-    app.Get("title");
+    app.Set("title", "My Site")
+    app.Get("title")
     // => "My Site"
 
 ### app.Get(name)
 
 Get setting `name` value.
 
-    app.Get("title");
+    app.Get("title")
     // => ""
 
-    app.Set("title", "My Site");
-    app.Get("title");
+    app.Set("title", "My Site")
+    app.Get("title")
     // => "My Site"
 
 ### app.Enable(name)
 
 Set setting `name` to `true`.
 
-    app.Enable("trust proxy");
-    app.Get("trust proxy");
+    app.Enable("trust proxy")
+    app.Get("trust proxy")
     // => "true"
 
 ### app.Disable(name)
 
 Set setting `name` to `false`.
 
-    app.Disable("trust proxy");
-    app.Get("trust proxy");
+    app.Disable("trust proxy")
+    app.Get("trust proxy")
     // => "false"
 
 ### app.Enabled(name)
 
 Check if setting `name` is enabled.
 
-    app.Enabled("trust proxy");
+    app.Enabled("trust proxy")
     // => false
 
-    app.Enable("trust proxy");
-    app.Enabled("trust proxy");
+    app.Enable("trust proxy")
+    app.Enabled("trust proxy")
     // => true
 
 ### app.Disabled(name)
 
 Check if setting `name` is disabled.
 
-    app.Disabled("trust proxy");
+    app.Disabled("trust proxy")
     // => true
 
-    app.Enable("trust proxy");
-    app.Disabled("trust proxy");
+    app.Enable("trust proxy")
+    app.Disabled("trust proxy")
     // => false
 
 ### app.Configure([env], callback)
@@ -81,32 +81,32 @@ Conditionally invoke `callback` when `env` matches `app.get("env")`. This method
 
     // all environments
     app.Configure(func() {
-        app.Set("title", "My Application");
+        app.Set("title", "My Application")
     })
 
     // development only
-    app.Configure("development", func(){
-        app.Set("db uri", "localhost/dev");
+    app.Configure("development", func() {
+        app.Set("db uri", "localhost/dev")
     })
 
     // production only
-    app.Configure("production", func(){
-        app.Set("db uri", "n.n.n.n/prod");
+    app.Configure("production", func() {
+        app.Set("db uri", "n.n.n.n/prod")
     })
 
 effectively sugar for:
 
     // all environments
-    app.Set("title", "My Application");
+    app.Set("title", "My Application")
 
     // development only
     if "development" == app.Get("env") {
-        app.Set("db uri", "localhost/dev");
+        app.Set("db uri", "localhost/dev")
     }
 
     // production only
     if "production" == app.Get("env") {
-        app.Set("db uri", "n.n.n.n/prod");
+        app.Set("db uri", "n.n.n.n/prod")
     }
 
 ### Application Settings
@@ -156,16 +156,16 @@ This method functions just like the `app.VERB()` methods, however it matches all
 
 This method is extremely useful for mapping "global" logic for specific path prefixes or arbitrary matches. For example if you placed the following route at the top of all other route definitions, it would require that all routes from that point on would require authentication, and automatically load a user. Keep in mind that these callbacks do not have to act as end points, `loadUser` can perform a task, then `next()` to continue matching subsequent routes.
 
-    app.all("*", requireAuthentication, loadUser);
+    app.all("*", requireAuthentication, loadUser)
 
 Or the equivalent:
 
     app.all("*", requireAuthentication)
-    app.all("*", loadUser);
+    app.all("*", loadUser)
 
 Another great example of this is white-listed "global" functionality. Here the example is much like before, however only restricting paths prefixed with "/api":
 
-    app.all("/api/", requireAuthentication);
+    app.all("/api/", requireAuthentication)
 
 
 ### app.Locals
@@ -314,16 +314,16 @@ Return an slice of Accepted media types ordered from highest quality to lowest.
 Check if the incoming request contains the "Content-Type" header field, and it matches the give mime `type`.
 
     // With Content-Type: text/html; charset=utf-8
-    req.Is("html");
-    req.Is("text/html");
+    req.Is("html")
+    req.Is("text/html")
     // => true
 
     // When Content-Type is application/json
-    req.Is("json");
-    req.Is("application/json");
+    req.Is("json")
+    req.Is("application/json")
     // => true
 
-    req.Is("html");
+    req.Is("html")
     // => false
 
 ### req.Ip
@@ -427,13 +427,13 @@ Check if the given lang is acceptable.
 
 Alias of `stackr.StatusCode`.
 
-    res.Status(404);
+    res.Status(404)
 
 ### res.Set(field, value)
 
 Set header `field` to `value`.
 
-res.set("Content-Type", "text/plain");
+res.set("Content-Type", "text/plain")
 
 Alias of `http.ResponseWriter.Header().Set(field, value)`.
 
@@ -441,7 +441,7 @@ Alias of `http.ResponseWriter.Header().Set(field, value)`.
 
 Get the case-insensitive response header `field`.
 
-    res.Get("Content-Type");
+    res.Get("Content-Type")
     // => "text/plain"
 
 Alias of `http.ResponseWriter.Header().Get(field)`
@@ -478,40 +478,40 @@ Clear cookie `name`. The `path` option defaults to "/".
 
 Redirect to the given `url` with optional `status` code defaulting to 302 "Found".
 
-    res.Redirect("/foo/bar");
-    res.Redirect("http://example.com");
-    res.Redirect("http://example.com", 301);
-    res.Redirect("../login");
+    res.Redirect("/foo/bar")
+    res.Redirect("http://example.com")
+    res.Redirect("http://example.com", 301)
+    res.Redirect("../login")
 
 Forgery supports a few forms of redirection, first being a fully qualified URI for redirecting to a different site:
 
-    res.Redirect("http://yahoo.com");
+    res.Redirect("http://yahoo.com")
 
 The second form is the pathname-relative redirect, for example if you were on `http://example.com/admin/post/new`, the following redirect to `/admin` would land you at `http://example.com/admin`:
 
-    res.Redirect("/admin");
+    res.Redirect("/admin")
 
 This next redirect is relative to the `mount` point of the application. For example if you have a blog application mounted at `/blog`, ideally it has no knowledge of where it was mounted, so where a redirect of /admin/post/new would simply give you `http://example.com/admin/post/new`, the following mount-relative redirect would give you `http://example.com/blog/admin/post/new`:
 
-    res.Redirect("admin/post/new");
+    res.Redirect("admin/post/new")
 
 Pathname relative redirects are also possible. If you were on `http://example.com/admin/post/new`, the following redirect would land you at `http//example.com/admin/post`:
 
-    res.Redirect("..");
+    res.Redirect("..")
 
 The final special-case is a back redirect, redirecting back to the Referer, defaulting to / when missing.
 
-    res.Redirect("back");
+    res.Redirect("back")
 
 ### res.Location(uri)
 
 Set the location header.
 
-    res.Location("/foo/bar");
-    res.Location("foo/bar");
-    res.Location("http://example.com");
-    res.Location("../login");
-    res.Location("back");
+    res.Location("/foo/bar")
+    res.Location("foo/bar")
+    res.Location("http://example.com")
+    res.Location("../login")
+    res.Location("back")
 
 You can use the same kind of urls as in res.Redirect().
 
@@ -520,25 +520,25 @@ You can use the same kind of urls as in res.Redirect().
 Assign the `charset`. Defaults to "utf-8".
 
     res.charset = "value";
-    res.send("some html");
+    res.send("some html")
     // => Content-Type: text/html; charset=value
 
 ### res.Send()
 
 Send a response.
 
-    res.Send([]byte{114, 105, 99}]);
-    res.Send(map[string]string{"some": "json"});
-    res.Send("some html");
-    res.Send("Sorry, we cannot find that!", 404);
-    res.Send(map[string]string{"error": "msg"}, 500);
-    res.Send(200);
+    res.Send([]byte{114, 105, 99}])
+    res.Send(map[string]string{"some": "json"})
+    res.Send("some html")
+    res.Send("Sorry, we cannot find that!", 404)
+    res.Send(map[string]string{"error": "msg"}, 500)
+    res.Send(200)
 
 This method performs a myriad of useful tasks for simple non-streaming responses such as automatically assigning the Content-Length unless previously defined and providing automatic __HEAD__ and HTTP cache freshness support.
 
 When a `string` or `[]byte` is given the Content-Type is set defaulted to "text/html":
 
-    res.Send("some html");
+    res.Send("some html")
 
 When an `interface` is given forgery will respond with the JSON representation:
 
@@ -578,7 +578,7 @@ By default the JSONP callback name is simply `callback`, however you may alter t
     res.Json(map[string]string{"user": "ric"})
     // => foo({"user": "ric"})
 
-    app.set("jsonp callback name", "cb");
+    app.set("jsonp callback name", "cb")
 
     // ?cb=foo
     res.Json(map[string]string{"error": "message"}, 500)
@@ -588,11 +588,11 @@ By default the JSONP callback name is simply `callback`, however you may alter t
 
 Sets the Content-Type to the mime lookup of `type`, or when "/" is present the Content-Type is simply set to this literal value.
 
-    res.ContentType(".html");
-    res.ContentType("html");
-    res.ContentType("json");
-    res.ContentType("application/json");
-    res.ContentType("png");
+    res.ContentType(".html")
+    res.ContentType("html")
+    res.ContentType("json")
+    res.ContentType("application/json")
+    res.ContentType("png")
 
 ### res.Format(map[string]func())
 
@@ -614,16 +614,16 @@ The following example would respond with `{"message": "hey"}` when the Accept he
         "application/json": func() {
             res.Send(map[string]string{"message": "hey"})
         }
-    });
+    })
 
 ### res.Attachment([filename])
 
 Sets the Content-Disposition header field to "attachment". If a `filename` is given then the Content-Type will be automatically set based on the extname via `res.ContentType()`, and the Content-Disposition"s "filename=" parameter will be set.
 
-    res.Attachment();
+    res.Attachment()
     // Content-Disposition: attachment
 
-    res.Attachment("path/to/logo.png");
+    res.Attachment("path/to/logo.png")
     // Content-Disposition: attachment; filename="logo.png"
     // Content-Type: image/png
 
@@ -635,9 +635,9 @@ Transfer the file at the given `path`. Alias for [http.ServeFile](http://golang.
 
 Transfer the file at `path` as an "attachment", typically browsers will prompt the user for download. The Content-Disposition "filename=" parameter, aka the one that will appear in the browser dialog is set to `path` by default, however you may provide an override `filename`.
 
-    res.Download("/report-12345.pdf");
+    res.Download("/report-12345.pdf")
 
-    res.Download("/report-12345.pdf", "report.pdf");
+    res.Download("/report-12345.pdf", "report.pdf")
 
 Uses `req.Send()` to do the file transfer.
 
@@ -665,10 +665,19 @@ This object is useful for exposing request-level information such as the request
         next()
     })
 
-### res.Render()
+### res.Render(view, [locals...])
 
-Render the `view` file responding with the rendered string using `res.Send()`.
+Render the `view` file responding with the rendered string using `res.Send()`. The `view` file is located using the `views` setting.
 
     res.Render("index.html", map[string]string{
         "body": "Document body",
+    })
+
+For the example below forgery will look for the file `./views/page.html` and attempt to render it using the `view engine` assigned to the extension `.html`.
+
+    res.Render("page.html", map[string]string{
+        "body": "Document body",
+    }, map[string]int{
+        "prev": 5,
+        "next": 11,
     })
