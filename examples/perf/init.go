@@ -1,3 +1,11 @@
+/*
+    To run this you'll need to have golang installed.
+
+    go get github.com/ricallinson/forgery
+    go run -a init.go
+    curl -i http://127.0.0.1:3000/
+*/
+
 package main
 
 import(
