@@ -455,7 +455,11 @@ Check if a TLS connection is established. This is a short-hand for:
 
 ### <a class="jump" name="req.Subdomains"></a>req.Subdomains()
 
-This feature is not supported yet.
+Return subdomain as a slice of strings. Subdomains are the dot-separated parts of the host before the main domain of the app. By default, the domain of the app is assumed to be the last two parts of the host. This can be changed by setting "subdomain offset".
+
+    // Host: ric.allinson.example.com
+    req.Subdomain()
+    // => ["allinson", "ric"]
 
 ### <a class="jump" name="req.OriginalUrl"></a>req.OriginalUrl
 
