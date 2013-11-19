@@ -11,4 +11,8 @@ Requires you to have [Go](http://golang.org/doc/install) installed.
 Requires you to have the [Google App Engine Go Runtime](https://developers.google.com/appengine/docs/go/) installed.
 
     cd forgery-site
-    ~/Go/appengine/dev_appserver.py .
+    ~/Go/appengine/goapp serve ./www
+
+## Deploy
+
+    ~/Go/appengine/goapp deploy ./www
