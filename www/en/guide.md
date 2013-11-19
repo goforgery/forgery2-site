@@ -1,6 +1,7 @@
 # Guide
 
 * __[Getting Started](#Getting_Started)__
+* __[Serving Static Files](#Serving_Static_Files)__
 * __[Google App Engine](#Google_App_Engine)__
 
 ## <a class="jump" name="Getting_Started"></a>Getting Started
@@ -23,13 +24,44 @@ Now create the file `init.go` with the following content.
         app.Listen(3000)
     }
 
-Start your app.
+Start the app.
 
     go run init.go
 
-Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/)
+Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/).
 
 * [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/local)
+
+## <a class="jump" name="Serving_Static_Files"></a>Serving Static Files
+
+To serve static files such as CSS, JS and images you can use the __f.Static__ middleware.
+
+Create the file `init.go` with the following content.
+
+    package main
+
+    import (
+        "github.com/ricallinson/forgery"
+    )
+
+    func main() {
+        app := f.CreateServer()
+        app.Use(f.Static())
+        app.Get("/", func(req *f.Request, res *f.Response, next func()) {
+            res.Send("<a href=\"file.txt\">file.txt</a>")
+        })
+        app.Listen(3000)
+    }
+
+Now make a new directory named `public` with the a file named `file.txt` in it. The content of the file can be anything you like.
+
+Start the app.
+
+    go run init.go
+
+Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/). When you click on the `file.txt` link you will be shown the content of the file.
+
+* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/static)
 
 ## <a class="jump" name="Google_App_Engine"></a>Google App Engine
 
@@ -63,9 +95,9 @@ Now create the Google App Engine configuration file `app.yaml` with the followin
     - url: /.*
       script: _go_app 
 
-With these 2 files complete start the local Google App Engine.
+With these 2 files complete start the local _Google App Engine_.
 
-    /path/to/go_appengine/dev_appserver.py .
+    /path/to/go_appengine/goapp serve .
 
 Now you can view the page in a browser [http://localhost:8080/](http://localhost:8080/)
 

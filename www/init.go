@@ -4,7 +4,6 @@ import (
 	"github.com/ricallinson/fmarkdown"
 	"github.com/ricallinson/fmustache"
 	"github.com/ricallinson/forgery"
-	"github.com/ricallinson/stackr"
 	"net/http"
 )
 
@@ -12,8 +11,8 @@ func init() {
 
 	app := f.CreateServer()
 
-	app.Use(stackr.Favicon())
-	app.Use(stackr.Static())
+	app.Use(f.Favicon())
+	app.Use(f.Static())
 
 	app.Engine(".html", fmustache.Make())
 
