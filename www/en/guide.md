@@ -29,7 +29,7 @@ Start your app.
 
 Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/)
 
-[Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/local)
+* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/local)
 
 ## <a class="jump" name="Google_App_Engine"></a>Google App Engine
 
@@ -69,4 +69,4 @@ With these 2 files complete start the local Google App Engine.
 
 Now you can view the page in a browser [http://localhost:8080/](http://localhost:8080/)
 
-[Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/googleappengine)
+* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/googleappengine)
