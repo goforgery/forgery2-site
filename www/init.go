@@ -11,6 +11,7 @@ func init() {
 
 	app := f.CreateServer()
 
+	app.Use(f.ResponseTime())
 	app.Use(f.Favicon())
 	app.Use(f.Static())
 
