@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var time = null;
     var head = $(".head");
-    var menu = $(".api ul").first();
+    var menu = $(".index ul").first();
 
     function SlideMenu() {
         clearTimeout(time);

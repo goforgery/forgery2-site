@@ -26,7 +26,7 @@ func init() {
         res.Locals["title"] = "API Reference - Forgery"
         res.Render("index.html", map[string]string{
             "body": fmarkdown.Render("./en/api.md"),
-            "class": "api",
+            "class": "index",
         })
     })
 
@@ -37,6 +37,7 @@ func init() {
         res.Locals["title"] = "API Reference - Forgery"
         res.Render("index.html", map[string]string{
             "body": fmarkdown.Render("./en/guide.md"),
+            "class": "index",
         })
     })
 

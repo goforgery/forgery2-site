@@ -91,7 +91,7 @@ a:hover {
     margin: 0 17em 0 5em;
 }
 
-.api ul:nth-of-type(1) {
+.index ul:nth-of-type(1) {
     position: absolute;
     margin: 0;
     padding: 0;
@@ -100,20 +100,20 @@ a:hover {
     text-align: right;
 }
 
-.api ul:nth-of-type(1) li {
+.index ul:nth-of-type(1) li {
     list-style: none;
 }
 
-.api ul:nth-of-type(1) li a {
+.index ul:nth-of-type(1) li a {
     color: #999;
     text-decoration: none;
 }
 
-.api ul:nth-of-type(1) li a:hover {
+.index ul:nth-of-type(1) li a:hover {
     text-decoration: underline;
 }
 
-.api ul:nth-of-type(1) li strong a {
+.index ul:nth-of-type(1) li strong a {
     color: #555;
     text-decoration: none;
 }
