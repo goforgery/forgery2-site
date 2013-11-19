@@ -66,9 +66,9 @@
 * [res.Locals](#res.Locals)
 * [res.Render()](#res.Render)
 * __[Middleware](#Middleware)__
+* [f.Favicon()](#f.Favicon)
 * [f.Logger()](#f.Logger)
 * [f.Static()](#f.Static)
-* [f.Favicon()](#f.Favicon)
 
 ## <a class="jump" name="f.CreateServer"></a>f.CreateServer()
 
@@ -758,14 +758,14 @@ For the example below forgery will look for the file `./views/page.html` and att
 
 ## <a class="jump" name="Middleware"></a>Middleware
 
+### <a class="jump" name="f.Favicon"></a>f.Favicon()
+
+Convenience attribute for accessing [stackr.Favicon](http://godoc.org/github.com/ricallinson/stackr#Favicon).
+
 ### <a class="jump" name="f.Logger"></a>f.Logger()
 
-Convenience attribute for accessing [stackr.Logger](http://gostackr.appspot.com/).
+Convenience attribute for accessing [stackr.Logger](http://godoc.org/github.com/ricallinson/stackr#Logger).
 
 ### <a class="jump" name="f.Static"></a>f.Static()
 
-Convenience attribute for accessing [stackr.Static](http://gostackr.appspot.com/).
-
-### <a class="jump" name="f.Favicon"></a>f.Favicon()
-
-Convenience attribute for accessing [stackr.Favicon](http://gostackr.appspot.com/).
+Convenience attribute for accessing [stackr.Static](http://godoc.org/github.com/ricallinson/stackr#Static).
