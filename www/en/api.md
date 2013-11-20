@@ -66,6 +66,7 @@
 * [res.Locals](#res.Locals)
 * [res.Render()](#res.Render)
 * __[Middleware](#Middleware)__
+* [f.ErrorHandler()](#f.ErrorHandler)
 * [f.Favicon()](#f.Favicon)
 * [f.Logger()](#f.Logger)
 * [f.ResponseTime()](#f.ResponseTime)
@@ -758,6 +759,10 @@ For the example below forgery will look for the file `./views/page.html` and att
     })
 
 ## <a class="jump" name="Middleware"></a>Middleware
+
+### <a class="jump" name="f.ErrorHandler"></a>f.ErrorHandler()
+
+Convenience attribute for accessing [stackr.ErrorHandler](http://godoc.org/github.com/ricallinson/stackr#ErrorHandler).
 
 ### <a class="jump" name="f.Favicon"></a>f.Favicon()
 
