@@ -187,9 +187,8 @@ The following settings are provided to alter how Forgery will behave:
 
 * _env_ Environment mode, defaults to `os.Getenv("GO_ENV")` or "development"
 * _trust proxy_ Enables reverse proxy support, disabled by default
-* TBD _jsonp callback name_ Changes the default callback name of _?callback=_
-* TBD _json replacer_ JSON replacer callback, null by default
-* TBD _json spaces_ JSON response spaces for formatting, defaults to _2_ in development, _0_ in production
+* _jsonp callback name_ Changes the default callback name of _?callback=_
+* _json spaces_ JSON response spaces for formatting, defaults to _"  "_ (2 spaces) in development, _0_ in production
 * TBD _case sensitive routing_ Enable case sensitivity, disabled by default, treating "/Foo" and "/foo" as the same
 * TBD _strict routing_ Enable strict routing, by default "/foo" and "/foo/" are treated the same by the router
 * TBD _view cache_ Enables view template compilation caching, enabled in production by default
