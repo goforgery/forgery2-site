@@ -69,6 +69,7 @@
 * [f.ErrorHandler()](#f.ErrorHandler)
 * [f.Favicon()](#f.Favicon)
 * [f.Logger()](#f.Logger)
+* [f.MethodOverride()](#f.MethodOverride)
 * [f.ResponseTime()](#f.ResponseTime)
 * [f.Static()](#f.Static)
 
@@ -770,6 +771,10 @@ Convenience attribute for accessing [stackr.Favicon](http://godoc.org/github.com
 ### <a class="jump" name="f.Logger"></a>f.Logger()
 
 Convenience attribute for accessing [stackr.Logger](http://godoc.org/github.com/ricallinson/stackr#Logger).
+
+### <a class="jump" name="f.MethodOverride"></a>f.MethodOverride()
+
+Convenience attribute for accessing [stackr.MethodOverride](http://godoc.org/github.com/ricallinson/stackr#MethodOverride).
 
 ### <a class="jump" name="f.ResponseTime"></a>f.ResponseTime()
 
