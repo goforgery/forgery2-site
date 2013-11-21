@@ -30,7 +30,7 @@ Start the app.
 
 Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/).
 
-* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/local)
+* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/helloworld)
 
 ## <a class="jump" name="Serving_Static_Files"></a>Serving Static Files
 
