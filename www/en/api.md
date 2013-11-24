@@ -11,7 +11,7 @@
 * [app.Use()](#app.Use)
 * [app.Engine()](#app.Engine)
 * [app.Param()](#app.Param)
-* [app.VERB()](#app.VERB)
+* [Application Routing](#app.VERB)
 * [app.All()](#app.All)
 * [app.Locals](#app.Locals)
 * [app.Render()](#app.Render)
@@ -212,7 +212,7 @@ This feature is not supported yet.
 
 ### <a class="jump" name="app.VERB"></a>app.VERB(path, [callback...], callback)
 
-The `app.VERB()` methods provide the routing functionality in Forgery, where __VERB__ is one of the HTTP verbs, such as `app.Post()`. Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke `next("route")` to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is no reason to proceed with the route matched.
+The `app.VERB()` methods provide the routing functionality in Forgery, where __VERB__ is one of the HTTP verbs, such as `app.Post()`. Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke `next()` to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is no reason to proceed with the route matched.
 
 The following snippet illustrates the most simple route definition possible. Forgery translates the path strings to regular expressions, used internally to match incoming requests. Query strings are not considered when performing these matches, for example "GET /" would match the following route, as would "GET /?name=ric".
 
@@ -220,7 +220,13 @@ The following snippet illustrates the most simple route definition possible. For
         res.Send("Hello world.")
     })
 
-__NOTE: Regular expressions and route parameters are not supported yet__.
+Several callbacks may also be passed, useful for performing validations, loading data, etc.
+
+    app.Get("/user/:id", loadUser, func(req *f.Request, res *f.Response, next func()) {
+        // ...
+    })
+
+__NOTE: Regular expressions not supported yet__.
 
 ### <a class="jump" name="app.All"></a>app.All(path, [callback...], callback)
 
@@ -273,7 +279,11 @@ If running in side a container such as the [Google App Engine](https://developer
 
 ### <a class="jump" name="req.Params"></a>req.Params
 
-This feature is not supported yet.
+This property is map containing properties mapped to the named route "parameters". For example if you have the route `/user/:name`, then the "name" property is available to you as `req.params["name"]`.
+
+    // GET /user/ric
+    req.params["name"]
+    // => "ric"
 
 ### <a class="jump" name="req.Query"></a>req.Query
 
