@@ -320,6 +320,10 @@ Return the value of param `name` when present.
     req.Param("name")
     // => "ric"
 
+    // /user/ric for /user/:name 
+    req.Param("name")
+    // => "ric"
+
 Lookup is performed in the following order:
 
 * req.Params
@@ -330,7 +334,23 @@ Direct access to `req.Body`, `req.Params`, and `req.Query` should be favored for
 
 ### <a class="jump" name="req.Route"></a>req.Route
 
-This feature is not supported yet.
+The currently matched `Route` containing several properties such as the route's original path string, the regexp generated, and so on.
+
+    app.Get("/user/:id", loadUser, func(req *f.Request, res *f.Response, next func()) {
+        fmt.Println(req.Route)
+    })
+
+Example output from the previous snippet:
+
+    &{
+        Method: GET,
+        Path: /user/:id,
+        Regex: ^(?i)/user/([^/]+)$,
+        Callbacks: [0x2230],
+        ParamNames: [id],
+        CaseSensitive: false,
+        Strict: false,
+    }
 
 ### <a class="jump" name="req.Cookie"></a>req.Cookie(name, [interface])
 
