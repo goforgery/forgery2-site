@@ -190,8 +190,8 @@ The following settings are provided to alter how Forgery will behave:
 * _trust proxy_ Enables reverse proxy support, disabled by default
 * _jsonp callback name_ Changes the default callback name of _?callback=_
 * _json spaces_ JSON response spaces for formatting, defaults to _"  "_ (2 spaces) in development, _0_ in production
-* TBD _case sensitive routing_ Enable case sensitivity, disabled by default, treating "/Foo" and "/foo" as the same
-* TBD _strict routing_ Enable strict routing, by default "/foo" and "/foo/" are treated the same by the router
+* _case sensitive routing_ Enable case sensitivity, disabled by default, treating "/Foo" and "/foo" as the same
+* _strict routing_ Enable strict routing, by default "/foo" and "/foo/" are treated the same by the router
 * TBD _view cache_ Enables view template compilation caching, enabled in production by default
 * _view engine_ The default engine extension to use when omitted
 * _views_ The view directory path, defaulting to "./views"
@@ -262,7 +262,9 @@ Render a `view` file returning with the rendered string. This is the app-level v
 
 ### <a class="jump" name="app.Router"></a>app.Router
 
-This feature is not supported yet.
+The app.Router attribute houses all of the routes defined mapped by the associated HTTP verb. This object may be used for introspection capabilities, for example Forgery uses this internally not only for routing but to provide default OPTIONS behavior unless app.Options() is used. Your application or framework may also remove routes by simply removing them from this object.
+
+__NOTE: Nethier auto OPTIONS or app.Options() are supported yet__.
 
 ### <a class="jump" name="app.Listen"></a>app.Listen(port)
 
