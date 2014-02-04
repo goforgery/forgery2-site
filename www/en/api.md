@@ -281,10 +281,10 @@ If running in side a container such as the [Google App Engine](https://developer
 
 ### <a class="jump" name="req.Params"></a>req.Params
 
-This property is map containing properties mapped to the named route "parameters". For example if you have the route `/user/:name`, then the "name" property is available to you as `req.params["name"]`.
+This property is map containing properties mapped to the named route "parameters". For example if you have the route `/user/:name`, then the "name" property is available to you as `req.Params["name"]`.
 
     // GET /user/ric
-    req.params["name"]
+    req.Params["name"]
     // => "ric"
 
 ### <a class="jump" name="req.Query"></a>req.Query
