@@ -677,19 +677,19 @@ Send a JSON response with JSONP support. This method is identical to res.json() 
     res.Json(map[string]string{"user": "ric"})
     // => {"user": "ric"}
 
-    res.Json(map[string]string{"error": "message"}, 500)
+    res.Jsonp(map[string]string{"error": "message"}, 500)
     // => {"error": "message"}
 
 By default the JSONP callback name is simply `callback`, however you may alter this with the _jsonp callback name_ setting. The following are some examples of JSONP responses using the same code:
 
     // ?callback=foo
-    res.Json(map[string]string{"user": "ric"})
+    res.Jsonp(map[string]string{"user": "ric"})
     // => foo({"user": "ric"})
 
     app.set("jsonp callback name", "cb")
 
     // ?cb=foo
-    res.Json(map[string]string{"error": "message"}, 500)
+    res.Jsonp(map[string]string{"error": "message"}, 500)
     // => foo({ "error": "message" })
 
 ### <a class="jump" name="res.ContentType"></a>res.ContentType(type)
