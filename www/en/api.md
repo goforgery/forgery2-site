@@ -1,6 +1,6 @@
 # API Reference
 
-* __[f.CreateServer](#f.CreateServer)__
+* __[f.CreateApp](#f.CreateApp)__
 * __[Application](#Application)__
 * [app.Set()](#app.Set)
 * [app.Get()](#app.Get)
@@ -73,16 +73,16 @@
 * [f.ResponseTime()](#f.ResponseTime)
 * [f.Static()](#f.Static)
 
-## <a class="jump" name="f.CreateServer"></a>f.CreateServer()
+## <a class="jump" name="f.CreateApp"></a>f.CreateApp()
 
 Create a forgery application.
 
     package main
 
-    import("github.com/ricallinson/forgery")
+    import("github.com/goforgery/forgery2")
 
     func init() {
-        app := f.CreateServer()
+        app := f.CreateApp()
         app.Get("/", func(req *f.Request, res *f.Response, next func()) {
             res.Send("Hello world.")
         })
@@ -198,17 +198,17 @@ The following settings are provided to alter how Forgery will behave:
 
 ### <a class="jump" name="app.Use"></a>app.Use([path], function)
 
-Wrapper for `stackr.Use()`. See the [Stackr](http://gostackr.appspot.com/) documentation for details.
+TODO.
 
 ### <a class="jump" name="app.Engine"></a>app.Engine(ext, callback)
 
 Register the given template engine `callback` as `ext`.
 
-    app.Engine(".html", fmustache.Make())
+    app.Engine(".html", mustache.Create())
 
 ### <a class="jump" name="app.Param"></a>TBD app.Param([name], callback)
 
-This feature is not supported yet.
+TODO.
 
 ### <a class="jump" name="app.VERB"></a>app.VERB(path, [callback...], callback)
 
@@ -270,7 +270,7 @@ __NOTE: Nethier auto OPTIONS or app.Options() are supported yet__.
 
 Bind and listen for connections on the given host and port, this method is [stackr.Listen()](http://gostackr.appspot.com/).
 
-    app := f.CreateServer()
+    app := f.CreateApp()
     app.Listen(3000)
 
 If running in side a container such as the [Google App Engine](https://developers.google.com/appengine/), `app` can be passed to the standard [http.Handle()](http://golang.org/pkg/net/http/#Handle) function.
@@ -792,26 +792,26 @@ For the example below forgery will look for the file `./views/page.html` and att
 
 ## <a class="jump" name="Middleware"></a>Middleware
 
-### <a class="jump" name="f.ErrorHandler"></a>f.ErrorHandler()
+### <a class="jump" name="error.Create"></a>error.Create()
 
-Convenience attribute for accessing [stackr.ErrorHandler](http://godoc.org/github.com/ricallinson/stackr#ErrorHandler).
+TODO.
 
-### <a class="jump" name="f.Favicon"></a>f.Favicon()
+### <a class="jump" name="favicon.Create"></a>favicon.Create()
 
-Convenience attribute for accessing [stackr.Favicon](http://godoc.org/github.com/ricallinson/stackr#Favicon).
+TODO.
 
-### <a class="jump" name="f.Logger"></a>f.Logger()
+### <a class="jump" name="logger.Create"></a>logger.Create()
 
-Convenience attribute for accessing [stackr.Logger](http://godoc.org/github.com/ricallinson/stackr#Logger).
+TODO.
 
-### <a class="jump" name="f.MethodOverride"></a>f.MethodOverride()
+### <a class="jump" name="methodoverride.Create"></a>methodoverride.Create()
 
-Convenience attribute for accessing [stackr.MethodOverride](http://godoc.org/github.com/ricallinson/stackr#MethodOverride).
+TODO.
 
-### <a class="jump" name="f.ResponseTime"></a>f.ResponseTime()
+### <a class="jump" name="responsetime.Create"></a>responsetime.Create()
 
-Convenience attribute for accessing [stackr.ResponseTime](http://godoc.org/github.com/ricallinson/stackr#ResponseTime).
+TODO.
 
-### <a class="jump" name="f.Static"></a>f.Static()
+### <a class="jump" name="static.Create"></a>static.Create()
 
-Convenience attribute for accessing [stackr.Static](http://godoc.org/github.com/ricallinson/stackr#Static).
+TODO.
