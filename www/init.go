@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/goforgery/favicon"
 	"github.com/goforgery/forgery2"
+	"github.com/goforgery/responsetime"
 	"github.com/goforgery/static"
 	"github.com/ricallinson/fmarkdown"
 	"github.com/ricallinson/fmustache"
@@ -13,7 +14,7 @@ func init() {
 
 	app := f.CreateApp()
 
-	// app.Use(f.ResponseTime())
+	app.Use(responsetime.Create())
 	app.Use(favicon.Create())
 	app.Use(static.Create())
 
