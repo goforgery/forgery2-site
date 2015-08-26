@@ -3,10 +3,10 @@ package main
 import (
 	"github.com/goforgery/favicon"
 	"github.com/goforgery/forgery2"
+	"github.com/goforgery/markdown"
+	"github.com/goforgery/mustache"
 	"github.com/goforgery/responsetime"
 	"github.com/goforgery/static"
-	"github.com/goforgery/markdown"
-	"github.com/ricallinson/fmustache"
 	"net/http"
 )
 
@@ -18,7 +18,7 @@ func init() {
 	app.Use(favicon.Create())
 	app.Use(static.Create())
 
-	app.Engine(".html", fmustache.Make())
+	app.Engine(".html", mustache.Create())
 
 	app.Locals["title"] = "forgery - web application framework for golang"
 
