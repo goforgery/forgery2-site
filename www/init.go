@@ -5,7 +5,7 @@ import (
 	"github.com/goforgery/forgery2"
 	"github.com/goforgery/responsetime"
 	"github.com/goforgery/static"
-	"github.com/ricallinson/fmarkdown"
+	"github.com/goforgery/markdown"
 	"github.com/ricallinson/fmustache"
 	"net/http"
 )
@@ -26,7 +26,7 @@ func init() {
 	app.Get("/api.html", func(req *f.Request, res *f.Response, next func()) {
 		res.Locals["title"] = "API Reference - Forgery"
 		res.Render("index.html", map[string]string{
-			"body":  fmarkdown.Render("./en/api.md"),
+			"body":  markdown.Render("./en/api.md"),
 			"class": "index",
 		})
 	})
@@ -35,7 +35,7 @@ func init() {
 	app.Get("/guide.html", func(req *f.Request, res *f.Response, next func()) {
 		res.Locals["title"] = "API Reference - Forgery"
 		res.Render("index.html", map[string]string{
-			"body":  fmarkdown.Render("./en/guide.md"),
+			"body":  markdown.Render("./en/guide.md"),
 			"class": "index",
 		})
 	})
@@ -43,7 +43,7 @@ func init() {
 	// Default Page.
 	app.Get("/", func(req *f.Request, res *f.Response, next func()) {
 		res.Render("index.html", map[string]string{
-			"body": fmarkdown.Render("./en/home.md"),
+			"body": markdown.Render("./en/home.md"),
 		})
 	})
 
