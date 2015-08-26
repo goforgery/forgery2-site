@@ -268,7 +268,7 @@ __NOTE: Nethier auto OPTIONS or app.Options() are supported yet__.
 
 ### <a class="jump" name="app.Listen"></a>app.Listen(port)
 
-Bind and listen for connections on the given host and port, this method is [stackr.Listen()](http://gostackr.appspot.com/).
+Bind and listen for connections on the given host and port.
 
     app := f.CreateApp()
     app.Listen(3000)
@@ -532,8 +532,6 @@ Check if the given lang is acceptable.
 ## <a class="jump" name="f.Response"></a>f.Response
 
 ### <a class="jump" name="res.Status"></a>res.Status(code)
-
-Alias of `stackr.StatusCode`.
 
     res.Status(404)
 
