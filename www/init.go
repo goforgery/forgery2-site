@@ -20,11 +20,11 @@ func init() {
 
 	app.Engine(".html", mustache.Create())
 
-	app.Locals["title"] = "forgery - web application framework for golang"
+	app.Locals["title"] = "forgery2 - web application framework for golang"
 
 	// API Reference Page.
 	app.Get("/api.html", func(req *f.Request, res *f.Response, next func()) {
-		res.Locals["title"] = "API Reference - Forgery"
+		res.Locals["title"] = "API Reference - forgery2"
 		res.Render("index.html", map[string]string{
 			"body":  markdown.Render("./en/api.md"),
 			"class": "index",
@@ -33,7 +33,7 @@ func init() {
 
 	// Guide Page.
 	app.Get("/guide.html", func(req *f.Request, res *f.Response, next func()) {
-		res.Locals["title"] = "API Reference - Forgery"
+		res.Locals["title"] = "API Reference - forgery2"
 		res.Render("index.html", map[string]string{
 			"body":  markdown.Render("./en/guide.md"),
 			"class": "index",

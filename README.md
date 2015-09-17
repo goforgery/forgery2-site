@@ -10,7 +10,7 @@ Requires you to have [Go](http://golang.org/doc/install) installed.
 
 Requires you to have the [Google App Engine Go Runtime](https://developers.google.com/appengine/docs/go/) installed.
 
-    cd forgery-site
+    cd forgery2-site
     ~/Go/appengine/goapp serve ./www
 
 ## Deploy
