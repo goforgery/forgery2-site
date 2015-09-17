@@ -6,15 +6,15 @@
 
 ## <a class="jump" name="Getting_Started"></a>Getting Started
 
-With golang installed ([download](http://golang.org/doc/install)), get your first application started by installing __forgery__.
+With golang installed ([download](http://golang.org/doc/install)), get your first application started by installing __forgery2__.
 
-    go get github.com/ricallinson/forgery
+    go get github.com/goforgery/forgery2
 
 Now create the file `init.go` with the following content.
 
     package main
 
-    import("github.com/ricallinson/forgery")
+    import("github.com/goforgery/forgery2")
 
     func main() {
         app := f.CreateServer()
@@ -30,7 +30,7 @@ Start the app.
 
 Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/).
 
-* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/helloworld)
+* [Source code for this example](https://github.com/goforgery/forgery2-site/tree/master/examples/helloworld)
 
 ## <a class="jump" name="Serving_Static_Files"></a>Serving Static Files
 
@@ -41,7 +41,7 @@ Create the file `init.go` with the following content.
     package main
 
     import (
-        "github.com/ricallinson/forgery"
+        "github.com/goforgery/forgery2"
     )
 
     func main() {
@@ -61,18 +61,18 @@ Start the app.
 
 Now you can view the page in a browser [http://localhost:3000/](http://localhost:3000/). When you click on the `file.txt` link you will be shown the content of the file.
 
-* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/static)
+* [Source code for this example](https://github.com/goforgery/forgery2-site/tree/master/examples/static)
 
 ## <a class="jump" name="Google_App_Engine"></a>Google App Engine
 
-You must have __forgery__ and the [Google App Engine Go Runtime](https://developers.google.com/appengine/docs/go/) installed.
+You must have __forgery2__ and the [Google App Engine Go Runtime](https://developers.google.com/appengine/docs/go/) installed.
 
 In a new directory create the file `init.go` with the following content.
 
     package main
 
     import(
-        "github.com/ricallinson/forgery"
+        "github.com/goforgery/forgery2"
         "net/http"
     )
 
@@ -101,4 +101,4 @@ With these 2 files complete start the local _Google App Engine_.
 
 Now you can view the page in a browser [http://localhost:8080/](http://localhost:8080/)
 
-* [Source code for this example](https://github.com/ricallinson/forgery-site/tree/master/examples/googleappengine)
+* [Source code for this example](https://github.com/goforgery/forgery2-site/tree/master/examples/googleappengine)
