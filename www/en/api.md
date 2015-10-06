@@ -330,7 +330,7 @@ This property is a map containing the first item of parsed query-string paramete
     req.Queries()["q"]
     // => "ric allinson"
 
-### <a class="jump" name="req.Body"></a>req.Body()
+### <a class="jump" name="req.Body"></a>req.Body(name)
 
 Helper function for __req.Bodies()__.
 
