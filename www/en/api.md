@@ -17,11 +17,14 @@
 * [app.Render()](#app.Render)
 * [app.Listen()](#app.Listen)
 * __[f.Request](#f.Request)__
-* [req.Params](#req.Params)
-* [req.Query](#req.Query)
-* [req.Body](#req.Body)
-* [req.Files](#req.Files)
 * [req.Param()](#req.Param)
+* [req.Params()](#req.Params)
+* [req.Query()](#req.Query)
+* [req.Queries()](#req.Queries)
+* [req.Body()](#req.Body)
+* [req.Bodies()](#req.Bodies)
+* [req.File()](#req.File)
+* [req.Files()](#req.Files)
 * [req.Route](#req.Route)
 * [req.Cookie()](#req.Cookie)
 * [req.SignedCookie()](#req.SignedCookie)
@@ -29,8 +32,8 @@
 * [req.Accepts()](#req.Accepts)
 * [req.Accepted()](#req.Accepted)
 * [req.Is()](#req.Is)
-* [req.Ip](#req.Ip)
-* [req.Ips](#req.Ips)
+* [req.Ip()](#req.Ip)
+* [req.Ips()](#req.Ips)
 * [req.Path](#req.Path)
 * [req.Host](#req.Host)
 * [req.Fresh()](#req.Fresh)
@@ -279,37 +282,6 @@ If running in side a container such as the [Google App Engine](https://developer
 
 ## <a class="jump" name="f.Request"></a>f.Request
 
-### <a class="jump" name="req.Params"></a>req.Params
-
-This property is map containing properties mapped to the named route "parameters". For example if you have the route `/user/:name`, then the "name" property is available to you as `req.Params["name"]`.
-
-    // GET /user/ric
-    req.Params["name"]
-    // => "ric"
-
-### <a class="jump" name="req.Query"></a>req.Query
-
-This property is a map containing the first item of parsed query-string parameters.
-
-    // GET /search?q=ric+allinson
-    req.Query["q"]
-    // => "ric allinson"
-
-### <a class="jump" name="req.Body"></a>req.Body
-
-This property is a map containing the first item of the parsed request body. This feature is provided by the `http.PostForm` property, though other body parsing middleware may populate this property instead.
-
-    // POST user=ric&email=ric@randomism.org
-    req.Body["user"]
-    // => "ric"
-
-    req.Body["email"]
-    // => "ric@randomism.org"
-
-### <a class="jump" name="req.Files"></a>req.Files
-
-This feature is not supported yet.
-
 ### <a class="jump" name="req.Param"></a>req.Param(name)
 
 Return the value of param `name` when present.
@@ -333,6 +305,60 @@ Lookup is performed in the following order:
 * req.Query
 
 Direct access to `req.Body`, `req.Params`, and `req.Query` should be favored for clarity - unless you truly accept input from each object.
+
+### <a class="jump" name="req.Params"></a>req.Params()
+
+This property is map containing properties mapped to the named route "parameters". For example if you have the route `/user/:name`, then the "name" property is available to you as `req.Params["name"]`.
+
+    // GET /user/ric
+    req.Params()["name"]
+    // => "ric"
+
+### <a class="jump" name="req.Queries"></a>req.Query(name)
+
+Helper function for __req.Queries()__.
+
+    // GET /search?q=ric+allinson
+    req.Query("q")
+    // => "ric allinson"
+
+### <a class="jump" name="req.Queries"></a>req.Queries()
+
+This property is a map containing the first item of parsed query-string parameters.
+
+    // GET /search?q=ric+allinson
+    req.Queries()["q"]
+    // => "ric allinson"
+
+### <a class="jump" name="req.Body"></a>req.Body()
+
+Helper function for __req.Bodies()__.
+
+    // POST user=ric&email=ric@randomism.org
+    req.Body("user")
+    // => "ric"
+
+    req.Body("email")
+    // => "ric@randomism.org"
+
+### <a class="jump" name="req.Bodies"></a>req.Bodies()
+
+This property is a map containing the first item of the parsed request body. This feature is provided by the `http.PostForm` property, though other body parsing middleware may populate this property instead.
+
+    // POST user=ric&email=ric@randomism.org
+    req.Bodies()["user"]
+    // => "ric"
+
+    req.Bodies()["email"]
+    // => "ric@randomism.org"
+
+### <a class="jump" name="req.File"></a>req.File(name)
+
+Helper function for __req.Files()__.
+
+### <a class="jump" name="req.Files"></a>req.Files()
+
+This feature is not supported yet.
 
 ### <a class="jump" name="req.Route"></a>req.Route
 
@@ -430,16 +456,19 @@ Check if the incoming request contains the "Content-Type" header field, and it m
     req.Is("html")
     // => false
 
-### <a class="jump" name="req.Ip"></a>req.Ip
+### <a class="jump" name="req.Ip"></a>req.Ip()
 
 Return the remote address, or when "trust proxy" is enabled - the upstream address.
 
-    req.Ip
+    req.Ip()
     // => "127.0.0.1"
 
-### <a class="jump" name="req.Ips"></a>req.Ips
+### <a class="jump" name="req.Ips"></a>req.Ips()
 
 When "trust proxy" is `true`, parse the "X-Forwarded-For" ip address list and return an array, otherwise an empty array is returned. For example if the value were "client, proxy1, proxy2" you would receive the array `["client", "proxy1", "proxy2"]` where "proxy2" is the furthest down-stream.
+
+    req.Ips()[0]
+    // => "127.0.0.1"
 
 ### <a class="jump" name="req.Path"></a>req.Path
 
