@@ -2,7 +2,7 @@
 
 Requires you to have [Go](http://golang.org/doc/install) installed.
 
-    go get github.com/goforgery/forgery
+    go get github.com/goforgery/forgery2
     go get github.com/goforgery/markdown
     go get github.com/goforgery/mustache
 
