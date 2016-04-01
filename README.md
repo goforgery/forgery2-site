@@ -2,9 +2,9 @@
 
 Requires you to have [Go](http://golang.org/doc/install) installed.
 
-    go get github.com/ricallinson/forgery
-    go get github.com/ricallinson/fmarkdown
-    go get github.com/ricallinson/fmustache
+    go get github.com/goforgery/forgery2
+    go get github.com/goforgery/markdown
+    go get github.com/goforgery/mustache
 
 ## Run locally
 
